@@ -4,5 +4,5 @@ produce:
 	ruby process.rb | sh
 dev:
 	ruby process.rb | grep tls | sh | \
-	ruby reduce.rb | tippecanoe --maximum-zoom=14 -f -o a.pmtiles
+	ruby reduce.rb | tippecanoe --maximum-zoom=14 -f -o docs/pop.pmtiles
 
