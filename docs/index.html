@@ -1,0 +1,24 @@
+<!doctype html>
+<html>
+<head>
+<style>
+body { margin: 0; padding: 0; }
+#map { position: absolute; top: 0; bottom: 0; width: 100%; }
+</style>
+<script src="https://unpkg.com/maplibre-gl@^5.1.0/dist/maplibre-gl.js"></script>
+<script src="https://unpkg.com/pmtiles@3.2.0/dist/pmtiles.js"></script>
+<link href="https://unpkg.com/maplibre-gl@^5.1.0/dist/maplibre-gl.css" rel="stylesheet" />
+</head>
+<body>
+<div id="map"></div>
+<script> 
+maplibregl.addProtocol('pmtiles', (new pmtiles.Protocol()).tile)
+const map = new maplibregl.Map({
+  container: 'map', style: 'style.json', hash: true
+})
+map.addControl(new maplibregl.NavigationControl())
+map.addControl(new maplibregl.GlobeControl())
+</script>
+</body>
+</html>
+  
