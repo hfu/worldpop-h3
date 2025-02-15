@@ -12,6 +12,7 @@ while gets
   count += 1
   (country, year, h3, pop) = $_.strip.split(' ')
   year = year.to_i
+  h3 = h3.to_i
   pop = pop.to_f
   dict[h3][year] += pop
   $stderr.print "#{Time.now} #{country} #{year} #{dict.size}\n" if count % 10000000 == 0
@@ -31,8 +32,8 @@ dict.keys.each {|h3|
     :properties => dict[h3].map {|k,v| [k, v.round]}.to_h,
     :tippecanoe => {
       :layer => 'pop',
-      :minzoom => { 6 => 4, 7 => 8, 8 => 10, 9 => 12, 10 => 14 }[res],
-      :maxzoom => { 6 => 7, 7 => 9, 8 => 11, 9 => 12, 10 => 14 }[res]
+      :minzoom => { 5 => 1, 6 => 5, 7 => 8, 8 => 10, 9 => 12, 10 => 14 }[res],
+      :maxzoom => { 5 => 4, 6 => 7, 7 => 9, 8 => 11, 9 => 12, 10 => 14 }[res]
     }
   }
   print JSON.dump(f), "\n"

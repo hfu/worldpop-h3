@@ -1,16 +1,9 @@
 {
   "version": 8,
-  "center": [
-    125.623,
-    -8.6076
-  ],
-  "zoom": 6.81,
-  "pitch": 32,
-  "bearing": -23.8,
   "sources": {
     "a": {
       "type": "vector",
-      "url": "pmtiles://https://hfu.github.io/worldpop-h3/pop.pmtiles",
+      "url": "pmtiles://https://data.source.coop/smartmaps/h3ys-worldpop/tls.pmtiles",
       "attribution": "WorldPop"
     }
   },
@@ -28,6 +21,25 @@
       "source": "a",
       "source-layer": "pop",
       "paint": {
+        "fill-opacity": [
+          "min",
+          1.0,
+          [
+            "/",
+            [
+              "log10",
+              [
+                "+",
+                1,
+                [
+                  "get",
+                  "2020"
+                ]
+              ]
+            ],
+            4.0
+          ]
+        ],
         "fill-color": [
           "case",
           [
@@ -38,7 +50,7 @@
                 "get",
                 "2020"
               ],
-              100
+              50
             ],
             [
               "<",
@@ -46,7 +58,7 @@
                 "get",
                 "2019"
               ],
-              100
+              10
             ]
           ],
           "#888888",
@@ -72,12 +84,26 @@
                 ]
               ]
             ],
+            -0.2,
+            "rgb(39,42,149)",
+            -0.15,
+            "rgb(39,42,197)",
+            -0.1,
+            "rgb(39,42,246)",
             -0.05,
-            "#ff0000",
+            "rgb(141,144,249)",
             0,
-            "#ffffff",
+            "rgb(243,246,255)",
             0.05,
-            "#00ff00"
+            "rgb(243,246,117)",
+            0.1,
+            "rgb(230,151,92)",
+            0.15,
+            "rgb(226,83,79)",
+            0.2,
+            "rgb(226,83,153)",
+            0.25,
+            "rgb(226,83,249)"
           ]
         ]
       }

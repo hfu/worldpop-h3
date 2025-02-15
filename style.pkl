@@ -1,15 +1,9 @@
-hidden pmtiles = "pmtiles://https://hfu.github.io/worldpop-h3/pop.pmtiles"
+//hidden pmtiles = "pmtiles://https://hfu.github.io/worldpop-h3/pop.pmtiles"
+hidden pmtiles = "pmtiles://https://data.source.coop/smartmaps/h3ys-worldpop/tls.pmtiles"
 hidden layer = "pop"
 hidden key = 2020
 
 version = 8
-center = new Listing {
-  125.623
-  -8.6076
-}
-zoom = 6.81
-pitch = 32
-bearing = -23.8
 sources {
   a { type = "vector" url = pmtiles attribution = "WorldPop" }
 }
@@ -22,11 +16,24 @@ layers = new Listing {
     id = layer type = "fill" source = "a"
     `source-layer` = layer
     paint {
-      `fill-color` = 
-      new Listing { "case"
+      `fill-opacity` = new Listing {
+        "min"
+        1.0
+        new Listing { "/" 
+          new Listing { "log10"
+            new Listing {
+              "+"
+              1
+              new Listing { "get" "\(key)" }
+            }
+          }
+          4.0
+        } 
+      }
+      `fill-color` = new Listing { "case"
         new Listing { "any"
-          new Listing { "<" new Listing { "get" "\(key)" } 100 }
-          new Listing { "<" new Listing { "get" "\(key - 1)" } 100 }
+          new Listing { "<" new Listing { "get" "\(key)" } 50 }
+          new Listing { "<" new Listing { "get" "\(key - 1)" } 10 }
         }
         "#888888"
         new Listing {
@@ -36,12 +43,26 @@ layers = new Listing {
             new Listing { "ln" new Listing { "get" "\(key)" } }
             new Listing { "ln" new Listing { "get" "\(key - 1)" } }
           }
+          -0.20
+          "rgb(39,42,149)"
+          -0.15
+          "rgb(39,42,197)"
+          -0.10
+          "rgb(39,42,246)"
           -0.05
-          "#ff0000"
+          "rgb(141,144,249)"
           0
-          "#ffffff"
+          "rgb(243,246,255)"
           0.05
-          "#00ff00"
+          "rgb(243,246,117)"
+          0.10
+          "rgb(230,151,92)"
+          0.15
+          "rgb(226,83,79)"
+          0.2
+          "rgb(226,83,153)"
+          0.25
+          "rgb(226,83,249)"
         } 
       }
     }

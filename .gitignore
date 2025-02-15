@@ -1,3 +1,4 @@
 src
-a.pmtiles*
-
+dst
+*.pmtiles*
+.DS_Store 
