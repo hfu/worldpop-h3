@@ -27,6 +27,8 @@ maplibregl.addProtocol('pmtiles', (new pmtiles.Protocol()).tile)
 const url = new URL(window.location.href)
 const params = url.searchParams
 const c = params.get('c') || 'tls'
+let year = 2020
+const grid = document.getElementById('grid')
 const opacity = (y) => {
   return ["min", 1.0, ["/", ["log10", ["+", 1, ["get", String(y)]]], 5.0]]
 }
@@ -61,12 +63,25 @@ const color = (y) => {
   map.addControl(new maplibregl.NavigationControl())
   map.addControl(new maplibregl.GlobeControl())
   const newYear = (y) => {
+    year = y
     document.getElementById('year').innerHTML = y
     map.setPaintProperty('pop', 'fill-opacity', opacity(y))
     map.setPaintProperty('pop', 'fill-color', color(y))
+    grid.innerHTML = '-'
   }
   document.getElementById('year_range').addEventListener('input', (e) => {
     newYear(parseInt(e.srcElement.value))
+  })
+  map.on('mousemove', (e) => {
+    const f = map.queryRenderedFeatures(e.point)[0]
+    if (f) {
+      const p1 = f.properties[String(year)]
+      const p0 = f.properties[String(year - 1)]
+      const pgr = Math.round((Math.log(p1) - Math.log(p0)) * 100)
+      grid.innerHTML = `${pgr}% ${p1} <- ${p0}`
+    } else {
+      grid.innerHTML = '-'
+    }
   })
 })()
 </script>
