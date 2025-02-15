@@ -32,8 +32,8 @@ dict.keys.each {|h3|
     :properties => dict[h3].map {|k,v| [k, v.round]}.to_h,
     :tippecanoe => {
       :layer => 'pop',
-      :minzoom => { 5 => 1, 6 => 5, 7 => 8, 8 => 10, 9 => 12, 10 => 14 }[res],
-      :maxzoom => { 5 => 4, 6 => 7, 7 => 9, 8 => 11, 9 => 12, 10 => 14 }[res]
+      :minzoom => { 5 => 1, 6 => 6, 7 => 8, 8 => 10, 9 => 12, 10 => 14 }[res],
+      :maxzoom => { 5 => 5, 6 => 7, 7 => 9, 8 => 11, 9 => 12, 10 => 14 }[res]
     }
   }
   print JSON.dump(f), "\n"

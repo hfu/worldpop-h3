@@ -27,13 +27,13 @@ layers = new Listing {
               new Listing { "get" "\(key)" }
             }
           }
-          4.0
+          5.0
         } 
       }
       `fill-color` = new Listing { "case"
         new Listing { "any"
-          new Listing { "<" new Listing { "get" "\(key)" } 50 }
-          new Listing { "<" new Listing { "get" "\(key - 1)" } 10 }
+          new Listing { "<" new Listing { "get" "\(key)" } 500 }
+          new Listing { "<" new Listing { "get" "\(key - 1)" } 500 }
         }
         "#888888"
         new Listing {
